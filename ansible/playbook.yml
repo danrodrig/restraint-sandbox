@@ -1,7 +1,6 @@
 ---
 - hosts: all
   vars:
-  - restraint_repo_distro: CentOS7
   - base_packages:
     - vim-enhanced
   become: yes
