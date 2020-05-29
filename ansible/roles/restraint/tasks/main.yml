@@ -13,7 +13,7 @@
   yum_repository:
     name: restraint
     description: Restraint YUM repo
-    baseurl: "https://beaker-project.org/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}/"
+    baseurl: "{{ restraint_repo_url }}/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
     gpgcheck: no
     skip_if_unavailable: yes
   tags:
@@ -25,7 +25,7 @@
   yum_repository:
     name: restraint-after-midnight
     description: Restraint Nightlies Repo
-    baseurl: "https://beaker-project.org/nightlies/harness/{{ restraint_repo_nightly_dir }}"
+    baseurl: "{{ restraint_repo_url }}/nightlies/harness/{{ restraint_repo_nightly_dir }}"
     gpgcheck: no
     enabled: no
     skip_if_unavailable: yes
