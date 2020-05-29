@@ -44,6 +44,28 @@
   - restraint
   - packages
 
+- name: Install debugging packages
+  package:
+    name:
+    - restraint-debuginfo
+    - restraint-client-debuginfo
+    - valgrind
+  tags:
+  - restraint
+  - packages
+  - debug
+
+- name: Setup Valgrind wrapper
+  copy:
+    src: restraintd-loves-valgrind.sh
+    dest: /usr/local/bin/restraintd-loves-valgrind
+    owner: root
+    group : root
+    mode: '0755'
+  tags:
+  - resraint
+  - debug
+
 - name: Create /root/.ssh directory
   file:
     name: /root/.ssh
