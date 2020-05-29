@@ -1,0 +1,5 @@
+[General]
+name = A Pointless Meta Task
+
+[restraint]
+entry_point = ./run.sh

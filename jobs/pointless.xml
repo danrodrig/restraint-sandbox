@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<job>
+    <recipeSet>
+        <recipe>
+            <autopick random="false"/>
+            <watchdog panic="None"/>
+            <packages/>
+            <ks_appends/>
+            <repos/>
+            <params>
+                <param name="GLOBAL" value="foo"/>
+            </params>
+            <roles>
+                <role value="SERVERS">
+                    <system value="hostname1.example.com"/>
+                    <system value="hostname2.example.com"/>
+                </role>
+            </roles>
+	    <distroRequires/>
+	    <hostRequires/>
+            <partitions/>
+	    <task name="/tasks/pointless" role="STANDALONE">
+	        <rpm name="make" path="/testarea/tasks/pointless"/>
+                <params/>
+            </task>
+        </recipe>
+    </recipeSet>
+</job>
+

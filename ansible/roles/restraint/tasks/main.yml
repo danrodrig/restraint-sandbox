@@ -1,0 +1,75 @@
+---
+- name: Include distribution specific variables
+  include_vars: "{{ lookup('first_found', possible_files) }}"
+  vars:
+    possible_files:
+    - "vars/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
+    - "vars/{{ ansible_distribution }}.yml"
+    - vars/fallback.yml
+
+- name: Setup Restraint Upstream YUM Repo
+  yum_repository:
+    name: restraint
+    description: Restraint YUM repo
+    baseurl: "https://beaker-project.org/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}/"
+    gpgcheck: no
+    skip_if_unavailable: yes
+  tags:
+  - restraint
+  - package-repo
+  - yum-repo
+
+- name: Setup Restraint Nightlies YUM Repo
+  yum_repository:
+    name: restraint-after-midnight
+    description: Restraint Nightlies Repo
+    baseurl: "https://beaker-project.org/nightlies/harness/{{ restraint_repo_nightly_dir }}"
+    gpgcheck: no
+    enabled: no
+    skip_if_unavailable: yes
+  tags:
+  - restraint
+  - package-repo
+  - yum-repo
+
+- name: Install Restraint
+  package:
+    name:
+    - restraint
+    - restraint-client
+    state: latest
+  tags:
+  - restraint
+  - packages
+
+- name: Create /root/.ssh directory
+  file:
+    name: /root/.ssh
+    owner: root
+    group: root
+    state: directory
+    mode: '0750'
+
+- name: Create root SSH key
+  openssh_keypair:
+    path: /root/.ssh/id_rsa
+  register: root_ssh_key
+
+- name: Self authorize root SSH key
+  shell:
+    cmd: "cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys"
+  when: root_ssh_key.changed
+
+- name: Create testarea directory
+  file:
+    name: /testarea
+    owner: root
+    group: root
+    state: directory
+    mode: '0755'
+
+- name: Copy tasks
+  copy:
+    src: /vagrant/tasks
+    dest: /testarea
+    remote_src: yes

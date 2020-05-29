@@ -1,0 +1,2 @@
+---
+restraint_repo_nightly_dir: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
