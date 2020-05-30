@@ -9,26 +9,24 @@
   tags:
   - restraint
 
-- name: Setup Restraint Upstream YUM Repo
+- name: Setup Restraint YUM repos
   yum_repository:
-    name: restraint
-    description: Restraint YUM repo
-    baseurl: "{{ restraint_repo_url }}/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
+    file: restraint
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.url }}"
+    enabled: "{{ item.enabled }}"
     gpgcheck: no
     skip_if_unavailable: yes
-  tags:
-  - restraint
-  - package-repo
-  - yum-repo
-
-- name: Setup Restraint Nightlies YUM Repo
-  yum_repository:
-    name: restraint-after-midnight
-    description: Restraint Nightlies Repo
-    baseurl: "{{ restraint_repo_url }}/nightlies/harness/{{ restraint_repo_nightly_dir }}"
-    gpgcheck: no
-    enabled: no
-    skip_if_unavailable: yes
+  loop:
+    - name: restraint
+      description: Restraint Upstream Repo
+      url: "{{ restraint_repo_url }}/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
+      enabled: yes
+    - name: restraint-nightlies
+      description: Restraint Nightlies Repo
+      url: "{{ restraint_repo_url }}/nightlies/harness/{{ restraint_repo_nightly_dir }}"
+      enabled: "{{ restraint_repo_nightly_enabled }}"
   tags:
   - restraint
   - package-repo
