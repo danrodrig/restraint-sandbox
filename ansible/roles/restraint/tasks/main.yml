@@ -23,12 +23,12 @@
   loop:
     - name: restraint
       description: Restraint Upstream Repo
-      url: "{{ restraint_repo_url }}/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
+      url: "{{ restraint_repo_upstream_url }}"
       enabled: yes
     - name: restraint-nightlies
       description: Restraint Nightlies Repo
-      url: "{{ restraint_repo_url }}/nightlies/harness/{{ restraint_repo_nightly_dir }}"
-      enabled: "{{ restraint_repo_nightly_enabled }}"
+      url: "{{ restraint_repo_nightlies_url }}"
+      enabled: "{{ restraint_repo_nightlies_enabled }}"
   tags:
   - restraint
   - package-repo
