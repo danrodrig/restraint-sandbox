@@ -50,6 +50,7 @@
     - restraint-debuginfo
     - restraint-client-debuginfo
     - valgrind
+    state: latest
   tags:
   - restraint
   - packages
@@ -80,15 +81,8 @@
 - name: Create root SSH key
   openssh_keypair:
     path: /root/.ssh/id_rsa
-  register: root_ssh_key
-  tags:
-  - restraint
-  - ssh
-
-- name: Self authorize root SSH key
-  shell:
-    cmd: "cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys"
-  when: root_ssh_key.changed
+  notify:
+  - Self authorize root SSH key
   tags:
   - restraint
   - ssh

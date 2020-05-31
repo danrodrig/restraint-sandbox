@@ -1,0 +1,7 @@
+---
+- name: Self authorize root SSH key
+  shell:
+    cmd: "cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys"
+  tags:
+  - restraint
+  - ssh
