@@ -6,8 +6,7 @@
     - yml
     - yaml
     ignore_unknown_extensions: yes
-    files_matching:
-    - "{{ ansible_distribution }}"
+    files_matching: "{{ ansible_distribution }}"
   tags:
   - restraint
 
