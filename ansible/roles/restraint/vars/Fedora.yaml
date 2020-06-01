@@ -1,3 +1,0 @@
----
-restraint_repo_nightlies_fedora_url: "{{ restraint_repo_url }}/nightlies/harness/Fedora30 }}"
-restraint_repo_nightlies_url: "{{ restraint_overrides.get('repo_nightlies_url', restraint_repo_nightlies_fedora_url) }}"
