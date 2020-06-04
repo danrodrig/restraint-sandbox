@@ -50,6 +50,7 @@
     - restraint-client-debuginfo
     - valgrind
     state: latest
+  when: restraint_debug
   tags:
   - restraint
   - packages
@@ -62,6 +63,7 @@
     owner: root
     group : root
     mode: '0755'
+  when: restraint_debug
   tags:
   - resraint
   - debug
