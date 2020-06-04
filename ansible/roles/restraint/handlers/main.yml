@@ -1,7 +1,7 @@
 ---
-- name: Self authorize root SSH key
+- name: Authorize Restraint user SSH key
   shell:
-    cmd: "cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys"
+    cmd: "cat {{ restraint_user_ssh_keypair.filename  }}.pub >> /root/.ssh/authorized_keys"
   tags:
   - restraint
   - ssh

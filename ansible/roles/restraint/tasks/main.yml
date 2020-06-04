@@ -77,11 +77,14 @@
   - restraint
   - ssh
 
-- name: Create root SSH key
+- name: Create restraint user SSH key pair
   openssh_keypair:
-    path: /root/.ssh/id_rsa
+    path: "/home/{{ restraint_user }}/.ssh/id_rsa"
+    owner: "{{ restraint_user }}"
+    mode: '0600'
+  register: restraint_user_ssh_keypair
   notify:
-  - Self authorize root SSH key
+  - Authorize Restraint user SSH key
   tags:
   - restraint
   - ssh

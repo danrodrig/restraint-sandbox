@@ -3,6 +3,7 @@
   vars:
   - base_packages:
     - vim-enhanced
+  - restraint_user: vagrant
   become: yes
   roles:
   - base-packages

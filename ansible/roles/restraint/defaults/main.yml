@@ -4,3 +4,4 @@ restraint_repo_url: https://beaker-project.org
 restraint_repo_upstream_url: "{{ restraint_repo_url }}/yum/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
 restraint_repo_nightlies_url: "{{ restraint_repo_url }}/nightlies/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
 restraint_repo_nightlies_enabled: no
+restraint_user: root
