@@ -1,7 +1,8 @@
 ---
 - name: Authorize Restraint user SSH key
-  shell:
-    cmd: "cat {{ restraint_user_ssh_keypair.filename  }}.pub >> /root/.ssh/authorized_keys"
+  authorized_key:
+    user: root
+    key: "{{ create_restraint_user_result.ssh_public_key }}"
   tags:
   - restraint
   - ssh
