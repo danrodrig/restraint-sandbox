@@ -13,6 +13,14 @@ $ restraint -t root@test -j /vagrant/jobs/pointless.xml
 
 ## Valgrind
 
+To install the debuginfo packages and the Valgrind wrapper, use the
+Restraint Ansible role variable,
+
+```
+vars:
+  - restraint_debug: yes
+```
+
 ```
 $ restraint -t root@test -j /vagrant/jobs/pointless.xml --restraint-path restraintd-loves-valgrind
 ```
