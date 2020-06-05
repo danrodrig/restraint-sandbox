@@ -19,7 +19,7 @@
 	    <distroRequires/>
 	    <hostRequires/>
             <partitions/>
-	    <task name="/tasks/pointless" role="STANDALONE">
+	    <task name="/tasks/pointless" role="STANDALONE" keepchanges="yes">
 	        <rpm name="make" path="/testarea/tasks/pointless"/>
                 <params/>
             </task>
