@@ -68,17 +68,6 @@
   - resraint
   - debug
 
-- name: Create Restraint user
-  user:
-    name: "{{ restraint_user }}"
-    generate_ssh_key: yes
-  register: create_restraint_user_result
-  notify:
-  - Authorize Restraint user SSH key
-  tags:
-  - restraint
-  - ssh
-
 - name: Create testarea directory
   file:
     name: /testarea

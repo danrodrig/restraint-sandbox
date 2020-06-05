@@ -1,8 +1,0 @@
----
-- name: Authorize Restraint user SSH key
-  authorized_key:
-    user: root
-    key: "{{ create_restraint_user_result.ssh_public_key }}"
-  tags:
-  - restraint
-  - ssh

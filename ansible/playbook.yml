@@ -3,8 +3,30 @@
   vars:
   - base_packages:
     - vim-enhanced
-  - restraint_user: vagrant
   become: yes
+  pre_tasks:
+    - name: Create root SSH directory
+      file:
+        path: /root/.ssh
+        state: directory
+        owner: root
+        group: root
+        mode: '0750'
+    - name: Insert Vagrant's insecure SSH private key
+      copy:
+        src: ~/.vagrant.d/insecure_private_key
+        dest: /home/vagrant/.ssh/id_rsa
+        owner: vagrant
+        group: vagrant
+        mode: '0400'
+    - name: Copy Vagrant's authorized keys to root user
+      copy:
+        remote_src: yes
+        src: /home/vagrant/.ssh/authorized_keys
+        dest: /root/.ssh/authorized_keys
+        owner: root
+        group: root
+        mode: '0755'
   roles:
   - base-packages
   - restraint
