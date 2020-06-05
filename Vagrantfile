@@ -17,6 +17,17 @@ Vagrant.configure("2") do |config|
   config.vm.provider :libvirt do |lv|
     lv.memory = 1024
     lv.cpus = 2
+    lv.qemu_use_session = false
+  end
+
+  config.vm.define "client", primary: true, autostart: true do |client|
+    client.vm.hostname = "client"
+    client.vm.network "private_network", ip: "192.168.42.101"
+  end
+
+  config.vm.define "test", autostart: true do |test|
+    test.vm.hostname = "test"
+    test.vm.network "private_network", ip: "192.168.42.102"
   end
 
   config.vm.provision "ansible" do |ansible|
