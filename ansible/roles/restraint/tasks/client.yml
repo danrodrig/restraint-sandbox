@@ -1,0 +1,23 @@
+---
+- include_tasks: repos.yml
+
+- name: Install Restraint client
+  package:
+    name:
+    - restraint-client
+    state: latest
+  tags:
+  - restraint
+  - packages
+
+- name: Install Restraint client debugging packages
+  package:
+    name:
+    - restraint-client-debuginfo
+    - valgrind
+    state: latest
+  when: restraint_debug
+  tags:
+  - restraint
+  - packages
+  - debug

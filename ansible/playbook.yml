@@ -29,4 +29,17 @@
         mode: '0755'
   roles:
   - base-packages
+
+- hosts: client
+  vars:
+  - restraint_server: no
+  become: yes
+  roles:
+  - restraint
+
+- hosts: test
+  vars:
+  - restraint_client: no
+  become: yes
+  roles:
   - restraint

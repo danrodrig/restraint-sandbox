@@ -1,0 +1,34 @@
+---
+- name: Include distribution specific variables
+  include_vars:
+    dir: vars/
+    extensions:
+    - yml
+    - yaml
+    ignore_unknown_extensions: yes
+    files_matching: "{{ ansible_distribution }}"
+  tags:
+  - restraint
+
+- name: Setup Restraint YUM repos
+  yum_repository:
+    file: restraint
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.url }}"
+    enabled: "{{ item.enabled }}"
+    gpgcheck: no
+    skip_if_unavailable: yes
+  loop:
+    - name: restraint
+      description: Restraint Upstream Repo
+      url: "{{ restraint_repo_upstream_url }}"
+      enabled: yes
+    - name: restraint-nightlies
+      description: Restraint Nightlies Repo
+      url: "{{ restraint_repo_nightlies_url }}"
+      enabled: "{{ restraint_repo_nightlies_enabled }}"
+  tags:
+  - restraint
+  - package-repo
+  - yum-repo
