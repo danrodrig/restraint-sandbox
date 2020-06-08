@@ -37,7 +37,9 @@
   roles:
   - restraint
 
-- hosts: test
+- hosts:
+  - test01
+  - test02
   vars:
   - restraint_client: no
   become: yes

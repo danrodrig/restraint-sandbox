@@ -17,11 +17,16 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "client", primary: true, autostart: true do |client|
     client.vm.hostname = "client"
-    client.vm.network "private_network", ip: "192.168.42.101"
+    client.vm.network "private_network", ip: "192.168.42.100"
   end
 
-  config.vm.define "test", autostart: true do |test|
-    test.vm.hostname = "test"
+  config.vm.define "test01", autostart: true do |test|
+    test.vm.hostname = "test01"
+    test.vm.network "private_network", ip: "192.168.42.101"
+  end
+
+  config.vm.define "test02", autostart: false do |test|
+    test.vm.hostname = "test02"
     test.vm.network "private_network", ip: "192.168.42.102"
   end
 
