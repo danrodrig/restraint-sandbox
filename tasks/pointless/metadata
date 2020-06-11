@@ -1,5 +1,6 @@
 [General]
-name = A Pointless Meta Task
+name = A Pointless Task
 
 [restraint]
+max_time = 1m
 entry_point = ./run.sh
