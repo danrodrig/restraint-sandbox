@@ -7,3 +7,4 @@ restraint_repo_nightlies_enabled: no
 restraint_debug: no
 restraint_server: yes
 restraint_client: yes
+restraint_release_tag: ''
