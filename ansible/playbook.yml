@@ -45,3 +45,30 @@
   become: yes
   roles:
   - restraint
+  post_tasks:
+    - name: Create Restraint tasks directory
+      file:
+        path: /usr/local/share/restraint-tasks
+        state: directory
+        owner: root
+        group: vagrant
+        mode: '0775'
+    - name: List tasks
+      find:
+        paths: /vagrant/restraint-tasks/
+        file_type: directory
+        recurse: no
+      register: restraint_tasks
+    - name: Install Ansible archive dependencies
+      package:
+        name:
+          - tar
+          - gzip
+        state: present
+    - name: Pack Restraint tasks
+      archive:
+        path: "{{ item.path }}/*"
+        dest: "/usr/local/share/restraint-tasks/{{ item.path.split('/')[-1] }}.tar.gz"
+        format: gz
+        force_archive: yes
+      with_items: "{{ restraint_tasks.files }}"

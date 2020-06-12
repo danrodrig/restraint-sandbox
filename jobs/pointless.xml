@@ -16,14 +16,13 @@
                     <system value="hostname2.example.com"/>
                 </role>
             </roles>
-	    <distroRequires/>
-	    <hostRequires/>
+            <distroRequires/>
+            <hostRequires/>
             <partitions/>
-	    <task name="/tasks/pointless" role="STANDALONE" keepchanges="yes">
-	        <rpm name="make" path="/testarea/tasks/pointless"/>
+            <task name="/tasks/pointless" role="STANDALONE">
+                <fetch url="file:///usr/local/share/restraint-tasks/pointless.tar.gz"/>
                 <params/>
             </task>
         </recipe>
     </recipeSet>
 </job>
-
