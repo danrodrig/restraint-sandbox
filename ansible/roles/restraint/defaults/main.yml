@@ -5,6 +5,12 @@ restraint_repo_upstream_url: "{{ restraint_repo_url }}/yum/harness/{{ ansible_di
 restraint_repo_nightlies_url: "{{ restraint_repo_url }}/nightlies/harness/{{ ansible_distribution }}{{ ansible_distribution_major_version }}"
 restraint_repo_nightlies_enabled: no
 restraint_debug: no
+restraint_rhts: yes
 restraint_server: yes
 restraint_client: yes
 restraint_release_tag: ''
+restraint_server_package: "restraint{{ restraint_release_tag }}"
+restraint_server_debuginfo_package: "restraint-debuginfo{{ restraint_release_tag }}"
+restraint_server_rhts_package: "restraint-rhts{{ restraint_release_tag }}"
+restraint_client_package: "restraint-client{{ restraint_release_tag }}"
+restraint_client_debuginfo_package: "restraint-client{{ restraint_release_tag }}"

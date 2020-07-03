@@ -3,7 +3,7 @@
 
 - name: Install Restraint client
   package:
-    name: "restraint-client{{ restraint_release_tag }}"
+    name: "{{ restraint_client_package }}"
     state: latest
   tags:
   - restraint
@@ -12,7 +12,7 @@
 - name: Install Restraint client debugging packages
   package:
     name:
-    - "restraint-client-debuginfo{{ restraint_release_tag }}"
+    - "{{ restraint_client_debuginfo_package }}"
     - valgrind
     state: latest
   when: restraint_debug

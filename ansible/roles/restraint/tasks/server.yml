@@ -3,10 +3,17 @@
 
 - name: Install Restraint server
   package:
-    name:
-    - "restraint{{ restraint_release_tag }}"
-    - "restraint-rhts{{ restraint_release_tag }}"
+    name: "{{ restraint_server_package }}"
     state: latest
+  tags:
+  - restraint
+  - packages
+
+- name: Install Restraint RHTS
+  package:
+    name: "{{ restraint_server_rhts_package }}"
+    state: latest
+  when: restraint_rhts
   tags:
   - restraint
   - packages
@@ -14,7 +21,7 @@
 - name: Install Restraint server debugging packages
   package:
     name:
-    - "restraint-debuginfo{{ restraint_release_tag }}"
+    - "{{ restraint_server_debuginfo_package }}"
     - valgrind
     state: latest
   when: restraint_debug
